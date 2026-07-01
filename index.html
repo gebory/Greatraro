@@ -146,13 +146,13 @@
   .hero-cta:hover{ color:#0a0806; border-color: var(--gold); }
   .hero-cta:hover::before{ transform: translateY(0); }
 
-  .scroll-cue{
-    position:absolute; bottom:38px; left:50%; transform:translateX(-50%);
+  .scroll-cue-inline{
+    margin-top:56px;
     font-family: var(--mono); font-size:10px; letter-spacing:4px; color: var(--gold-dim);
     display:flex; flex-direction:column; align-items:center; gap:10px;
-    opacity:0; animation: fadeUp 1s ease forwards 1s;
+    opacity:0; animation: fadeUp 1.1s ease forwards .7s;
   }
-  .scroll-cue .line{ width:1px; height:34px; background: linear-gradient(var(--gold-dim), transparent); animation: pulseLine 2.2s ease-in-out infinite; }
+  .scroll-cue-inline .line{ width:1px; height:34px; background: linear-gradient(var(--gold-dim), transparent); animation: pulseLine 2.2s ease-in-out infinite; }
 
   @keyframes fadeUp{ from{ opacity:0; transform: translateY(22px); } to{ opacity:1; transform:translateY(0); } }
   @keyframes rosetteSpin{ from{ transform: rotate(0); } to{ transform: rotate(360deg); } }
@@ -319,7 +319,6 @@
 <div class="topbar">
   <div class="topbar-mark">RARO</div>
   <div class="topbar-links">
-    <a href="archive.html">ARCHIVE</a>
     <a href="about.html">ABOUT</a>
     <a href="waitlist.html">WAITLIST</a>
     <a href="https://instagram.com/964raro">INSTAGRAM</a>
@@ -337,8 +336,7 @@
   <h1 class="hero-word">RARO</h1>
   <div class="hero-sub">ARCHIVE OF MARKS</div>
   <p class="hero-desc">Every piece begins as an idea.<br>Before it becomes a garment.</p>
-  <a href="archive.html" class="hero-cta">ENTER THE ARCHIVE</a>
-  <div class="scroll-cue"><span class="line"></span>SCROLL</div>
+  <div class="scroll-cue-inline"><span class="line"></span>SCROLL TO THE ARCHIVE</div>
 </section>
 
 <div class="wrap">
@@ -366,8 +364,7 @@
   <!-- THE ARCHIVE / LEDGER -->
   <section class="ledger">
     <div class="ledger-head reveal">
-      <div class="eyebrow" style="justify-content:center;"><span style="display:none"></span></div>
-      <h2>The Archive</h2>
+      <h2 id="archive">The Archive</h2>
       <p>Each concept explores a different mark. Together they form the Archive of Marks.</p>
     </div>
 
@@ -437,8 +434,8 @@
 
   <!-- CTA -->
   <section class="cta-band reveal">
-    <p>The Archive of Marks is open.</p>
-    <a href="archive.html" class="enter">ENTER THE ARCHIVE</a>
+    <p>The Archive of Marks is growing.<br>Follow it from the beginning.</p>
+    <a href="waitlist.html" class="enter">JOIN THE WAITLIST</a>
   </section>
 
 </div>
@@ -447,7 +444,6 @@
   <div class="wrap footer-row">
     <div class="footer-mark">RARO — ARCHIVE OF MARKS</div>
     <div class="footer-links">
-      <a href="archive.html">ARCHIVE</a>
       <a href="about.html">ABOUT</a>
       <a href="waitlist.html">WAITLIST</a>
       <a href="https://instagram.com/964raro">INSTAGRAM</a>
