@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — RARO</title>
+<meta name="description" content="The story, process and values behind RARO — an evolving archive of symbols, stories and marks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black: #0a0806;
+    --black-2: #120e0a;
+    --card: #16110b;
+    --gold: #c9a256;
+    --gold-dim: #9f8757;
+    --cream: #d8d0c5;
+    --cream-dim: #a89d8c;
+    --line: rgba(201,162,86,.14);
+    --line-strong: rgba(201,162,86,.3);
+    --display: 'Cinzel', serif;
+    --body: 'Jost', sans-serif;
+    --mono: 'Space Mono', monospace;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ background:var(--black); color:var(--cream); font-family:var(--body); font-weight:300; overflow-x:hidden; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+  ::selection{ background:var(--gold); color:#0a0806; }
+  :focus-visible{ outline:1px solid var(--gold); outline-offset:4px; }
+
+  .topbar{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 32px; mix-blend-mode:difference;
+  }
+  .topbar-mark{ font-family:var(--display); letter-spacing:4px; font-size:15px; color:var(--gold); text-decoration:none; }
+  .topbar-links{ display:flex; gap:26px; }
+  .topbar-links a{ text-decoration:none; font-family:var(--mono); font-size:11px; letter-spacing:2px; color:var(--cream); opacity:.75; transition:opacity .3s; }
+  .topbar-links a:hover{ opacity:1; }
+  .lang-switch{ font-family:var(--mono); font-size:11px; letter-spacing:2px; }
+  .lang-switch a{ text-decoration:none; color:var(--cream); opacity:.6; }
+  .lang-switch a.active{ opacity:1; color:var(--gold); }
+
+  .reveal{ opacity:0; transform:translateY(36px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:6px; color:var(--gold-dim); text-transform:uppercase; margin-bottom:28px; display:flex; align-items:center; gap:16px; }
+  .eyebrow::before{ content:""; width:26px; height:1px; background:var(--gold-dim); }
+
+  /* page hero */
+  .page-hero{ min-height:66svh; display:flex; flex-direction:column; justify-content:center; padding:160px 32px 80px; text-align:center; }
+  .page-hero .kicker{ font-family:var(--mono); font-size:11px; letter-spacing:6px; color:var(--gold-dim); margin-bottom:22px; opacity:0; animation:fadeUp 1s ease forwards .1s; }
+  .page-hero h1{ font-family:var(--display); font-weight:500; font-size:clamp(40px,8vw,84px); letter-spacing:4px; color:var(--gold); opacity:0; animation:fadeUp 1s ease forwards .25s; }
+  .page-hero p{ max-width:560px; margin:30px auto 0; font-size:18px; line-height:1.9; color:var(--cream-dim); opacity:0; animation:fadeUp 1s ease forwards .4s; }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(22px);} to{ opacity:1; transform:translateY(0);} }
+
+  section{ padding:100px 0; border-top:1px solid var(--line); }
+  section:first-of-type{ border-top:none; }
+
+  /* origin */
+  .origin{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:80px; align-items:start; }
+  .origin h2{ font-family:var(--display); font-weight:400; font-size:clamp(24px,3vw,32px); color:var(--gold); letter-spacing:1px; position:sticky; top:140px; }
+  .origin-copy p{ font-size:17px; line-height:2.05; color:var(--cream-dim); max-width:600px; }
+  .origin-copy p + p{ margin-top:22px; }
+  .origin-copy .sign{ margin-top:34px; font-family:var(--display); color:var(--gold); letter-spacing:1px; }
+  @media (max-width:860px){ .origin{ grid-template-columns:1fr; gap:34px; } .origin h2{ position:static; } }
+
+  /* process */
+  .process-steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:60px; }
+  @media (max-width:900px){ .process-steps{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .process-steps{ grid-template-columns:1fr; } }
+  .step{ background:var(--black-2); padding:38px 30px; }
+  .step-num{ font-family:var(--mono); font-size:12px; color:var(--gold-dim); letter-spacing:2px; }
+  .step h3{ font-family:var(--display); font-weight:400; font-size:19px; color:var(--gold); margin:16px 0 12px; letter-spacing:1px; }
+  .step p{ font-size:14.5px; line-height:1.85; color:var(--cream-dim); }
+
+  /* values */
+  .values{ display:grid; grid-template-columns:repeat(3,1fr); gap:54px; margin-top:50px; }
+  @media (max-width:820px){ .values{ grid-template-columns:1fr; gap:40px; } }
+  .value h3{ font-family:var(--display); font-weight:400; font-size:21px; color:var(--cream); letter-spacing:.5px; margin-bottom:14px; }
+  .value h3 span{ color:var(--gold); font-family:var(--mono); font-size:12px; letter-spacing:2px; display:block; margin-bottom:10px; }
+  .value p{ font-size:15.5px; line-height:1.9; color:var(--cream-dim); }
+
+  /* materials */
+  .materials{ display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  @media (max-width:860px){ .materials{ grid-template-columns:1fr; gap:40px; } }
+  .materials-copy p{ font-size:17px; line-height:2.05; color:var(--cream-dim); max-width:480px; }
+  .materials-copy p + p{ margin-top:20px; }
+  .materials-list{ list-style:none; margin-top:30px; }
+  .materials-list li{ font-family:var(--mono); font-size:12.5px; letter-spacing:1px; color:var(--gold-dim); padding:12px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; }
+  .materials-list li:last-child{ border-bottom:1px solid var(--line); }
+  .materials-visual{ aspect-ratio:4/5; border:1px solid var(--line); background:var(--card); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+  .materials-visual img{ width:100%; height:100%; object-fit:cover; }
+
+  /* roadmap */
+  .roadmap-list{ margin-top:50px; }
+  .rm-item{ display:grid; grid-template-columns:120px 1fr; gap:30px; padding:26px 0; border-top:1px solid var(--line); }
+  .rm-item:last-child{ border-bottom:1px solid var(--line); }
+  .rm-tag{ font-family:var(--mono); font-size:11px; letter-spacing:2px; color:var(--gold); }
+  .rm-body h4{ font-family:var(--display); font-weight:400; font-size:18px; color:var(--cream); margin-bottom:8px; letter-spacing:.5px; }
+  .rm-body p{ font-size:14.5px; line-height:1.8; color:var(--cream-dim); max-width:560px; }
+
+  /* faq */
+  .faq-item{ border-top:1px solid var(--line); padding:26px 0; }
+  .faq-item:last-child{ border-bottom:1px solid var(--line); }
+  .faq-item h4{ font-family:var(--display); font-weight:400; font-size:18px; color:var(--gold); margin-bottom:10px; letter-spacing:.5px; }
+  .faq-item p{ font-size:15px; line-height:1.85; color:var(--cream-dim); max-width:640px; }
+
+  /* cta */
+  .cta-band{ text-align:center; padding:130px 0 150px; }
+  .cta-band p{ font-family:var(--display); font-size:clamp(22px,3vw,30px); color:var(--cream); margin-bottom:44px; }
+  .cta-band a.enter{ display:inline-block; padding:22px 56px; border:1px solid var(--line-strong); text-decoration:none; font-family:var(--mono); font-size:12px; letter-spacing:5px; color:var(--gold); position:relative; overflow:hidden; transition:color .4s; }
+  .cta-band a.enter::before{ content:""; position:absolute; inset:0; background:var(--gold); transform:translateY(101%); transition:transform .45s cubic-bezier(.7,0,.2,1); z-index:-1; }
+  .cta-band a.enter:hover{ color:#0a0806; }
+  .cta-band a.enter:hover::before{ transform:translateY(0); }
+
+  footer{ border-top:1px solid var(--line); padding:46px 0 60px; }
+  .footer-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; }
+  .footer-mark{ font-family:var(--display); letter-spacing:4px; color:var(--gold-dim); font-size:14px; }
+  .footer-links{ display:flex; gap:26px; }
+  .footer-links a{ font-family:var(--mono); font-size:11px; letter-spacing:2px; text-decoration:none; color:var(--cream-dim); transition:color .3s; }
+  .footer-links a:hover{ color:var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="topbar-mark">RARO</a>
+  <div class="topbar-links">
+    <a href="index.html#archive">ARCHIVE</a>
+    <a href="waitlist.html">WAITLIST</a>
+    <a href="https://instagram.com/964raro">INSTAGRAM</a>
+  </div>
+  <div class="lang-switch">
+    <a href="about.html" class="active">EN</a> / <a href="about-ar.html">AR</a>
+  </div>
+</div>
+
+<section class="page-hero">
+  <div class="kicker">ABOUT RARO</div>
+  <h1>The Archive,<br>in full</h1>
+  <p>What the front page tells you in a line, this page tells you in full — the origin, the process behind every mark, and what RARO stands for.</p>
+</section>
+
+<div class="wrap">
+
+  <!-- ORIGIN -->
+  <section class="origin reveal">
+    <h2>The Origin</h2>
+    <div class="origin-copy">
+      <p>RARO did not start as a clothing brand looking for a story. It started the other way — a set of ideas, symbols and fragments of memory that needed a form to live in, and a garment turned out to be the right one.</p>
+      <p>The name carries that intent: something rare, something set apart from what moves quickly and is forgotten quickly. Every early decision — the mark, the archive structure, the naming of each concept — was made to protect that intent rather than to chase a trend.</p>
+      <p>What you see today is the first chapter of that archive. It is deliberately small. Six marks, six ideas, each one earned rather than rushed into existence.</p>
+      <p class="sign">This is a working archive — it grows one mark at a time.</p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="reveal">
+    <div class="eyebrow">How a mark is made</div>
+    <h2 style="font-family:var(--display); font-weight:400; font-size:clamp(24px,3vw,32px); color:var(--gold); letter-spacing:1px;">From idea to archive entry</h2>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>The Idea</h3>
+        <p>Every concept begins as a single sentence — a feeling, a memory, or a question, written down before anything visual exists.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>The Symbol</h3>
+        <p>The idea is reduced to a mark. Nothing decorative survives this stage — only the shape that carries the meaning.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>The Archive Note</h3>
+        <p>Each mark is documented like an artifact: a short note explaining what it means and why it earned a place in the archive.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>The Garment</h3>
+        <p>Only once the mark and its note exist does the garment get built around them — the last step, not the first.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="reveal">
+    <div class="eyebrow">What guides the archive</div>
+    <div class="values">
+      <div class="value">
+        <h3><span>MEANING FIRST</span>Nothing decorative</h3>
+        <p>A mark isn't added because it looks good. It's added because it means something. If a piece can't explain itself, it doesn't enter the archive.</p>
+      </div>
+      <div class="value">
+        <h3><span>SLOW BY DESIGN</span>Depth over speed</h3>
+        <p>RARO releases when a concept is ready, not on a calendar. Six marks in the archive is not a limitation — it's the pace the work requires.</p>
+      </div>
+      <div class="value">
+        <h3><span>ROOTED</span>Place and memory</h3>
+        <p>The archive draws from Mesopotamian symbols and Iraqi memory — not as decoration, but as the actual source material for every mark.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIALS -->
+  <section class="materials reveal">
+    <div class="materials-copy">
+      <div class="eyebrow">Craft &amp; materials</div>
+      <p>Every archive entry documents its own material — visible on each concept's page alongside the garment and the packaging, the same way a museum label sits beside an object.</p>
+      <p>The intent is consistency: heavyweight, durable base cloth, construction that holds up to wear, and finishing details specific to each mark rather than a single template repeated six times.</p>
+      <ul class="materials-list">
+        <li><span>APPROACH</span><span>Documented per concept</span></li>
+        <li><span>PRIORITY</span><span>Weight &amp; durability</span></li>
+        <li><span>FINISH</span><span>Specific to each mark</span></li>
+      </ul>
+    </div>
+    <div class="materials-visual">
+      <img src="Images/Void/188059A6-2FA4-4AB5-8117-4847ED5A84C8.png" alt="RARO fabric detail — VOID">
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="reveal">
+    <div class="eyebrow">What's next</div>
+    <div class="roadmap-list">
+      <div class="rm-item">
+        <div class="rm-tag">NOW</div>
+        <div class="rm-body">
+          <h4>Six marks, open archive</h4>
+          <p>VOID, ROOTS, NHR, DIJLA, ATHAR and ECHO are documented and viewable. The waitlist opens access as each one becomes available.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-tag">NEXT</div>
+        <div class="rm-body">
+          <h4>Mark 07</h4>
+          <p>The next entry in the archive is in development. As with every mark before it, the idea comes first.</p>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-tag">LATER</div>
+        <div class="rm-body">
+          <h4>A closer look at each piece</h4>
+          <p>Interactive views of the garments themselves, so each archive entry can be examined the way the object deserves.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="reveal">
+    <div class="eyebrow">Questions</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h4>How do I get a piece from the archive?</h4>
+        <p>Join the waitlist — each mark opens to the waitlist first, in the order it enters the archive.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Will there be more than six marks?</h4>
+        <p>Yes. The archive is ongoing — new marks are added when an idea is ready, not on a fixed schedule.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Where can I follow the process?</h4>
+        <p>Instagram is where new marks and drops are shared first.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band reveal" style="border-top:none;">
+    <p>Follow the archive as it's written.</p>
+    <a href="waitlist.html" class="enter">JOIN THE WAITLIST</a>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="footer-mark">RARO — ARCHIVE OF MARKS</div>
+    <div class="footer-links">
+      <a href="index.html#archive">ARCHIVE</a>
+      <a href="waitlist.html">WAITLIST</a>
+      <a href="https://instagram.com/964raro">INSTAGRAM</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold:0.15 });
+  revealEls.forEach(el=> io.observe(el));
+</script>
+
+</body>
+</html>
